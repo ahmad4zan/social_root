@@ -1,10 +1,13 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_responsive_ui/config/palette.dart';
 import 'package:flutter_facebook_responsive_ui/models/models.dart';
 import 'package:flutter_facebook_responsive_ui/widgets/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class CustomAppBar extends StatelessWidget {
+import '../screens/chat.dart';
+
+class CustomAppBar extends StatefulWidget {
   final User currentUser;
   final List<IconData> icons;
   final int selectedIndex;
@@ -17,6 +20,23 @@ class CustomAppBar extends StatelessWidget {
     @required this.selectedIndex,
     @required this.onTap,
   }) : super(key: key);
+
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  int notification = 0;
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        notification++;
+      });
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +58,7 @@ class CustomAppBar extends StatelessWidget {
         children: [
           Expanded(
             child: Text(
-              'facebook',
+              'rootbook',
               style: const TextStyle(
                 color: Palette.facebookBlue,
                 fontSize: 32.0,
@@ -51,9 +71,9 @@ class CustomAppBar extends StatelessWidget {
             height: double.infinity,
             width: 600.0,
             child: CustomTabBar(
-              icons: icons,
-              selectedIndex: selectedIndex,
-              onTap: onTap,
+              icons: widget.icons,
+              selectedIndex: widget.selectedIndex,
+              onTap: widget.onTap,
               isBottomIndicator: true,
             ),
           ),
@@ -61,17 +81,28 @@ class CustomAppBar extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                UserCard(user: currentUser),
+                UserCard(user: widget.currentUser),
                 const SizedBox(width: 12.0),
-                CircleButton(
-                  icon: Icons.search,
-                  iconSize: 30.0,
-                  onPressed: () => print('Search'),
-                ),
-                CircleButton(
-                  icon: MdiIcons.facebookMessenger,
-                  iconSize: 30.0,
-                  onPressed: () => print('Messenger'),
+                // CircleButton(
+                //   icon: Icons.search,
+                //   iconSize: 30.0,
+                //   onPressed: () => print('Search'),
+                // ),
+                Badge(
+                  showBadge: notification != 0,
+                  badgeContent: Text(
+                    notification.toString(),
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  position: BadgePosition.bottomEnd(bottom: 2, end: 2),
+                  child: CircleButton(
+                    icon: MdiIcons.facebookMessenger,
+                    iconSize: 30.0,
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MessagesScreen()),
+                    ),
+                  ),
                 ),
               ],
             ),

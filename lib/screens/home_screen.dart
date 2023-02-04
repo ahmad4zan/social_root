@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_responsive_ui/config/palette.dart';
 import 'package:flutter_facebook_responsive_ui/data/data.dart';
 import 'package:flutter_facebook_responsive_ui/models/models.dart';
+import 'package:flutter_facebook_responsive_ui/screens/chat.dart';
 import 'package:flutter_facebook_responsive_ui/widgets/widgets.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -50,10 +51,10 @@ class _HomeScreenMobile extends StatelessWidget {
       controller: scrollController,
       slivers: [
         SliverAppBar(
-          brightness: Brightness.light,
+          // brightness: Brightness.light,
           backgroundColor: Colors.white,
           title: Text(
-            'facebook',
+            'rootbook',
             style: const TextStyle(
               color: Palette.facebookBlue,
               fontSize: 28.0,
@@ -64,45 +65,48 @@ class _HomeScreenMobile extends StatelessWidget {
           centerTitle: false,
           floating: true,
           actions: [
-            CircleButton(
-              icon: Icons.search,
-              iconSize: 30.0,
-              onPressed: () => print('Search'),
-            ),
+            // CircleButton(
+            //   icon: Icons.search,
+            //   iconSize: 30.0,
+            //   onPressed: () => print('Search'),
+            // ),
             CircleButton(
               icon: MdiIcons.facebookMessenger,
               iconSize: 30.0,
-              onPressed: () => print('Messenger'),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MessagesScreen()),
+              ),
             ),
           ],
         ),
-        SliverToBoxAdapter(
-          child: CreatePostContainer(currentUser: currentUser),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
-          sliver: SliverToBoxAdapter(
-            child: Rooms(onlineUsers: onlineUsers),
-          ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
-          sliver: SliverToBoxAdapter(
-            child: Stories(
-              currentUser: currentUser,
-              stories: stories,
-            ),
-          ),
-        ),
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              final Post post = posts[index];
-              return PostContainer(post: post);
-            },
-            childCount: posts.length,
-          ),
-        ),
+        // SliverToBoxAdapter(
+        //   child: CreatePostContainer(currentUser: currentUser),
+        // ),
+        // SliverPadding(
+        //   padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
+        //   sliver: SliverToBoxAdapter(
+        //     child: Rooms(onlineUsers: onlineUsers),
+        //   ),
+        // ),
+        // SliverPadding(
+        //   padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 5.0),
+        //   sliver: SliverToBoxAdapter(
+        //     child: Stories(
+        //       currentUser: currentUser,
+        //       stories: stories,
+        //     ),
+        //   ),
+        // ),
+        // SliverList(
+        //   delegate: SliverChildBuilderDelegate(
+        //     (context, index) {
+        //       final Post post = posts[index];
+        //       return PostContainer(post: post);
+        //     },
+        //     childCount: posts.length,
+        //   ),
+        // ),
       ],
     );
   }
@@ -136,24 +140,24 @@ class _HomeScreenDesktop extends StatelessWidget {
           child: CustomScrollView(
             controller: scrollController,
             slivers: [
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
-                sliver: SliverToBoxAdapter(
-                  child: Stories(
-                    currentUser: currentUser,
-                    stories: stories,
-                  ),
-                ),
-              ),
-              SliverToBoxAdapter(
-                child: CreatePostContainer(currentUser: currentUser),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
-                sliver: SliverToBoxAdapter(
-                  child: Rooms(onlineUsers: onlineUsers),
-                ),
-              ),
+              // SliverPadding(
+              //   padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 10.0),
+              //   sliver: SliverToBoxAdapter(
+              //     child: Stories(
+              //       currentUser: currentUser,
+              //       stories: stories,
+              //     ),
+              //   ),
+              // ),
+              // SliverToBoxAdapter(
+              //   child: CreatePostContainer(currentUser: currentUser),
+              // ),
+              // SliverPadding(
+              //   padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 5.0),
+              //   sliver: SliverToBoxAdapter(
+              //     child: Rooms(onlineUsers: onlineUsers),
+              //   ),
+              // ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
@@ -173,7 +177,7 @@ class _HomeScreenDesktop extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: ContactsList(users: onlineUsers),
+              child: ContactsList(users: []),
             ),
           ),
         ),

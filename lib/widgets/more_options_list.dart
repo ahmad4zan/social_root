@@ -6,13 +6,13 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 class MoreOptionsList extends StatelessWidget {
   final List<List> _moreOptionsList = const [
-    [MdiIcons.shieldAccount, Colors.deepPurple, 'COVID-19 Info Center'],
-    [MdiIcons.accountMultiple, Colors.cyan, 'Friends'],
-    [MdiIcons.facebookMessenger, Palette.facebookBlue, 'Messenger'],
-    [MdiIcons.flag, Colors.orange, 'Pages'],
-    [MdiIcons.storefront, Palette.facebookBlue, 'Marketplace'],
-    [Icons.ondemand_video, Palette.facebookBlue, 'Watch'],
-    [MdiIcons.calendarStar, Colors.red, 'Events'],
+    // [MdiIcons.shieldAccount, Colors.deepPurple, 'COVID-19 Info Center'],
+    // [MdiIcons.accountMultiple, Colors.cyan, 'Friends'],
+    // [MdiIcons.facebookMessenger, Palette.facebookBlue, 'Messenger'],
+    // [MdiIcons.flag, Colors.orange, 'Pages'],
+    // [MdiIcons.storefront, Palette.facebookBlue, 'Marketplace'],
+    // [Icons.ondemand_video, Palette.facebookBlue, 'Watch'],
+    // [MdiIcons.calendarStar, Colors.red, 'Events'],
   ];
 
   final User currentUser;
@@ -29,21 +29,61 @@ class MoreOptionsList extends StatelessWidget {
       child: ListView.builder(
         itemCount: 1 + _moreOptionsList.length,
         itemBuilder: (BuildContext context, int index) {
-          if (index == 0) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: UserCard(user: currentUser),
-            );
-          }
-          final List option = _moreOptionsList[index - 1];
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: _Option(
-              icon: option[0],
-              color: option[1],
-              label: option[2],
-            ),
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Intro',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Container(
+                height: 10,
+              ),
+              Text('testing doing'),
+              Container(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Icon(Icons.home),
+                  ),
+                  Expanded(
+                      child: Text('Lives in Kampung ABC, asdasdasdsd dsdsd')),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Icon(Icons.heart_broken),
+                  ),
+                  Expanded(child: Text('Married')),
+                ],
+              )
+            ],
           );
+          // if (index == 0) {
+          //   return Padding(
+          //     padding: const EdgeInsets.symmetric(vertical: 8.0),
+          //     child: UserCard(user: currentUser),
+          //   );
+          // }
+          // final List option = _moreOptionsList[index - 1];
+          // return Padding(
+          //   padding: const EdgeInsets.symmetric(vertical: 8.0),
+          //   child: _Option(
+          //     icon: option[0],
+          //     color: option[1],
+          //     label: option[2],
+          //   ),
+          // );
         },
       ),
     );

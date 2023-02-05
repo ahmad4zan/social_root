@@ -24,14 +24,20 @@ List demeChatMessages = [
     isSender: false,
   ),
   ChatMessage(
-    text: "This is NOAH BOT, can i help you",
+    text: "This is N BOT, what can i help you",
     messageType: ChatMessageType.text,
     messageStatus: MessageStatus.viewed,
     isSender: false,
   ),
-  //TODO: USER NEED TO SELECT PROMPT, " Can you tell me the latest news?"
   ChatMessage(
-    text: "Everything is fine, nice weather, and nothing to report of. except..",
+    text: "Can you tell me the latest news?",
+    messageType: ChatMessageType.text,
+    messageStatus: MessageStatus.viewed,
+    isSender: true,
+  ),
+  ChatMessage(
+    text:
+        "Everything is fine, nice weather, and nothing to report of. except..",
     messageType: ChatMessageType.text,
     messageStatus: MessageStatus.viewed,
     isSender: false,
@@ -42,12 +48,11 @@ List demeChatMessages = [
     messageStatus: MessageStatus.viewed,
     isSender: false,
   ),
-  //TODO: USER NEED TO SELECT PROMPT, "How to become rich?"
   ChatMessage(
-    text: "You have just a credit card due by this week.",
+    text: "How to become rich?",
     messageType: ChatMessageType.text,
     messageStatus: MessageStatus.viewed,
-    isSender: false,
+    isSender: true,
   ),
 //   ChatMessage(
 //     text: "Hello, How are you?",
